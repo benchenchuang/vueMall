@@ -5,19 +5,19 @@
 > Node项目地址 https://github.com/benchenchuang/myMall
 
 ## 首页 （轮播+分类导航+推荐+整站导航）
- <img src="./src/assets/1-1.png"/>
+ <img src="./src/assets/1-1.png"/><br/>
 ## 分类产品列表
- <img src="./src/assets/1-2.png"/>
+ <img src="./src/assets/1-2.png"/><br/>
 ## 产品详情（点赞+加购物车+直接购买）
- <img src="./src/assets/1-3.png"/>
+ <img src="./src/assets/1-3.png"/><br/>
 ## 订单列表
- <img src="./src/assets/1-4.png"/>
+ <img src="./src/assets/1-4.png"/><br/>
 ## 订单详情（订单详细内容+15分钟未付款取消订单）
- <img src="./src/assets/1-5.png"/>
+ <img src="./src/assets/1-5.png"/><br/>
 ## 购物车（全选 单选等）
- <img src="./src/assets/1-6.png"/>
+ <img src="./src/assets/1-6.png"/><br/>
 ## 下单页面
- <img src="./src/assets/1-7.png"/>
+ <img src="./src/assets/1-7.png"/><br/>
 
 ## Build Setup
 
