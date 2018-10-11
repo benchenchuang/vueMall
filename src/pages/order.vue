@@ -1,6 +1,6 @@
 <template>
     <div class="template">
-        <p class="status" v-if="leftTimes">倒计时：{{leftTime}}</p>
+        <p class="status" v-if="leftTimes">付款剩余时间：{{leftTime}}</p>
         <p class="status" v-else>{{order.status | orderStatus}}</p>
         <div class="order_item_list">
             <ul>
