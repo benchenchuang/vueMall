@@ -38,8 +38,9 @@ router.beforeEach((to,from,next)=>{
       next({
         path: '/'
       });
+    }else{
+      next();
     }
-    next();
   }
 
   if(to.meta.title){

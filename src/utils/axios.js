@@ -93,3 +93,5 @@ export const orderList=(params)=>{return axios.get(api+'/order/list',params).the
 export const orderDetail=(params)=>{return axios.get(api+'/order/detail',params).then(res=>res.data)};
 //订单状态更改
 export const orderStatus=(params)=>{return axios.post(api+'/order/status',params).then(res=>res.data)};
+//删除订单
+export const delOrder=(params)=>{return axios.post(api+'/order/del',params).then(res=>res.data)};

@@ -25,7 +25,8 @@ export default new Router({
       name:'Login',
       component:Login,
       meta:{
-        title:'登录'
+        title:'登录',
+        certify:true
       }
     },
     {

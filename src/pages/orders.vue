@@ -2,7 +2,7 @@
     <div>
         <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
             <ul>
-                <li class="order_item" v-for="(order,index) in orders" :key="index">
+                <li class="order_item" v-for="(order,index) in orders" :key="index" v-if="order.status!=5">
                     <router-link :to="{name:'Order',params:{id:order.id}}">
                         <p class="item_cont">订单号：{{order.order_no}} <span class="fr" v-if="order.status==0">{{order.status | orderStatus}}</span><span class="fr status" v-else>{{order.status | orderStatus}}</span></p>
                         <p class="item_cont">订单金额：<span class="money">￥{{order.pay_money}}</span></p>
@@ -19,6 +19,9 @@
                         </dt>
                     </dl>
                     <p class="item_cont">下单时间：{{order.create_time}}</p>
+                    <div class="clearfix">
+                        <a v-if="order.status<=1" href="javascript:void(0);" @click="delOrder(order.id)" class="btn_del">删除订单</a>
+                    </div>
                 </li>
             </ul>
             <p class="tip" v-if="orders.length" v-show="load">加载中...</p>
@@ -92,6 +95,20 @@ export default {
                     that.load=false;
                 });
             }
+        },
+        delOrder(id){
+            let that=this;
+            Axios.delOrder({status:5,id:id}).then(res=>{
+                if(res.status==2){
+                    this.$toast('订单删除成功');
+                    that.page=0;
+                    that.orders=[];
+                    that.loadMore();
+                    // this.$router.go(0);
+                }else{
+                    this.$toast('订单删除失败');
+                }
+            })
         }
     }
 }
@@ -175,6 +192,17 @@ body{
     font-size: 3.5vw;
     color: #999;
     line-height: 2;
+}
+.btn_del{
+    float: right;
+    width: 18vw;
+    height: 6vw;
+    line-height: 6vw;
+    font-size: 3.5vw;
+    text-align: center;
+    color: #999;
+    border: 1px solid #e4e4e4;
+    border-radius: 2vw;
 }
 </style>
 

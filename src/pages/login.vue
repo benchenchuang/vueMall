@@ -29,8 +29,6 @@ export default {
             }
         }
     },
-    created(){
-    },
     methods:{
         login(){
             let that=this;
