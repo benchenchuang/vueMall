@@ -36,7 +36,7 @@ export default {
             })
         },
         getOut(){
-            this.Cookie.setCookie('authorizon');
+            this.Cookie.clearCookie('authorizon');
             this.$router.push({
                 path:"/login",
                 query: {redirect: this.$router.currentRoute.fullPath}

@@ -13,6 +13,7 @@ import Collect from '@/pages/collects'
 import AddressList from '@/pages/address_list'
 import Address from '@/pages/address'
 import makeOrder from '@/pages/make_order'
+import Order from '@/pages/order'
 
 Vue.use(Router)
 
@@ -24,8 +25,7 @@ export default new Router({
       name:'Login',
       component:Login,
       meta:{
-        title:'登录',
-        certify:true
+        title:'登录'
       }
     },
     {
@@ -124,11 +124,19 @@ export default new Router({
       }
     },
     {
-      path:'/make_order/:item',
+      path:'/make_order',
       name:'makeOrder',
       component:makeOrder,
       meta:{
         title:'确认订单'
+      }
+    },
+    {
+      path:'/order/:id',
+      name:'Order',
+      component:Order,
+      meta:{
+        title:"订单详情"
       }
     }
     

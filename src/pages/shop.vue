@@ -36,7 +36,7 @@
         <footer class="footer">
             <div class="footer_controls flex_box">
                 <a class="flex_item add_cart" href="javascript:void(0);" @click="addCart"><i class="fa fa-shopping-cart"></i>加入购物车</a>
-                <a class="flex_item buy_shop" href="javascript:void(0);">立即购买</a>
+                <router-link :to="{name:'makeOrder',query:{item:checkArr}}"  class="flex_item buy_shop">立即购买</router-link>
             </div>
         </footer>
     </div>
@@ -64,7 +64,8 @@ export default {
                 pagination: {
                     el: '.swiper-pagination'
                 },
-            }
+            },
+            checkArr:''
         }
     },
     created(){
@@ -87,6 +88,8 @@ export default {
                 if(res.status==2){
                     that.collect=res.data.collect;
                     that.shop=res.data.shop;
+                    let checkArr=[{product_id:that.shop.id,title:that.shop.name,count:1,pic:that.shop.banner_images[0],price:that.shop.price}];
+                    that.checkArr=JSON.stringify(checkArr);
                 }else{
                     this.$toast(res.data)
                 }

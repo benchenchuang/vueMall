@@ -48,7 +48,7 @@
                     <i class="fa fa-check-square"></i>取消全选
                 </div>
                 <p class="flex_item all_price">总价：<span class="price">￥{{total_price}}</span></p>
-                <router-link :to="{name:'makeOrder',params:{item:checkArr}}" class="make_order">去结算</router-link>
+                <router-link :to="{name:'makeOrder',query:{item:checkArr}}" class="make_order">去结算</router-link>
             </div>
         </footer>
     </div>
@@ -77,7 +77,7 @@ export default {
             this.carts.forEach(item => {
                 if(item.status==1 && item.checked){
                     total+=item.quantity*item.price;
-                    checkArr.push({id:item.id,product_id:item.product_id,count:item.quantity})
+                    checkArr.push({id:item.id,product_id:item.product_id,title:item.name,count:item.quantity,pic:item.banner_images[0],price:item.price})
                 }
             });
             this.checkArr=JSON.stringify(checkArr);
@@ -152,7 +152,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 body{
     background: #f5f5f5;
 }

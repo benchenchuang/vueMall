@@ -14,7 +14,7 @@
         </div>
 
         <a class="login_btn" @click="login" href="javascript:void(0);">登 录</a>
-        <a class="link" href="#">注册</a>
+        <router-link class="link" :to="{name:'Register'}">注册</router-link>
     </div>
 </template>
 <script>
@@ -28,6 +28,8 @@ export default {
                 password:''
             }
         }
+    },
+    created(){
     },
     methods:{
         login(){

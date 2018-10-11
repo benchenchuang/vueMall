@@ -20,7 +20,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
     response=>{
         if(response.data.status==4){
-            Cookie.clearCookie('token');
+            Cookie.clearCookie('authorizon');
             router.replace({
                 path:"/login",
                 query: {redirect: router.currentRoute.fullPath}
@@ -31,7 +31,7 @@ axios.interceptors.response.use(
     error=>{
         if(error.response){
             if(error.response.data.status==4){
-                Cookie.clearCookie('token');
+                Cookie.clearCookie('authorizon');
                 router.replace({
                     path:"/login",
                     query: {redirect: router.currentRoute.fullPath}
@@ -85,3 +85,11 @@ export const getAddressDetail=(params)=>{return axios.get(api+'/address/detail',
 export const delAddress=(params)=>{return axios.post(api+'/address/delete',params).then(res=>res.data)};
 //添加地址
 export const addAddress=(params)=>{return axios.post(api+'/address/add',params).then(res=>res.data)};
+//创建订单
+export const addOrder=(params)=>{return axios.post(api+'/order/add',params).then(res=>res.data)};
+//获取订单列表
+export const orderList=(params)=>{return axios.get(api+'/order/list',params).then(res=>res.data)};
+//获取订单列表
+export const orderDetail=(params)=>{return axios.get(api+'/order/detail',params).then(res=>res.data)};
+//订单状态更改
+export const orderStatus=(params)=>{return axios.post(api+'/order/status',params).then(res=>res.data)};

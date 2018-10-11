@@ -51,6 +51,8 @@ export default {
     },
     created(){
         let id=this.$route.params.id;
+        let orderItem=this.$route.query.item;
+        this.orderItem=orderItem;
         this.address.id=id;
         if(id){
             this.getAddress(id);
@@ -67,6 +69,7 @@ export default {
             this.address.checked=status;
         },
         addAddress(){
+            let that=this;
             let address=this.address;
             if(!address.ship_name){
                 return this.$toast('请填写收件人姓名')
@@ -80,7 +83,11 @@ export default {
             Axios.addAddress(address).then(res=>{
                 this.$toast(res.data)
                 if(res.status==2){
-                    this.$router.push({path:'/address/list'});
+                    if(that.orderItem){
+                        this.$router.push({path:'/address/list',query:{item:that.orderItem}});
+                    }else{
+                        this.$router.push({path:'/address/list'});
+                    }
                 }
             })
         }

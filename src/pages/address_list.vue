@@ -1,6 +1,23 @@
 <template>
     <div>
-        <div class="address">
+        <div class="address" v-if="orderItem">
+            <ul v-if="addressBox.length">
+                <li class="address_item flex_box" v-for="(address,index) in addressBox" :key="index">
+                    <div class="address_content flex_item">
+                        <router-link :to='{name:"makeOrder",query:{item:orderItem,address:address.id}}'>
+                            <p>{{address.ship_name}} {{address.ship_phone}}</p>
+                            <p>{{address.ship_address}}</p>
+                        </router-link>
+                        <div class="control">
+                            <router-link :to='{name:"Address",params:{id:address.id},query:{item:orderItem}}'><i class="fa fa-edit"></i></router-link>
+                            <i class="fa fa-trash-o" @click="delAddress(address.id)"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <p v-else class="address_tip">暂无地址</p>
+        </div>
+        <div class="address" v-else>
             <ul v-if="addressBox.length">
                 <li class="address_item flex_box" v-for="(address,index) in addressBox" :key="index">
                     <div class="item_check">
@@ -19,9 +36,11 @@
             </ul>
             <p v-else class="address_tip">暂无地址</p>
         </div>
+
         <footer class="cart_footer">
             <div class="cart_fixed flex_box">
-                <router-link :to="{name:'Address',params:{id:0}}" class="flex_item make_order">添加地址</router-link>
+                <router-link :to="{name:'Address',params:{id:0},query:{item:orderItem}}" v-if="orderItem" class="flex_item make_order">添加地址</router-link>
+                <router-link :to="{name:'Address',params:{id:0}}" v-else class="flex_item make_order">添加地址</router-link>
             </div>
         </footer>
     </div>
@@ -32,11 +51,14 @@ export default {
     data(){
         return {
             userId:'',
-            addressBox:[]
+            addressBox:[],
+            orderItem:''
         }
     },
     created(){
         let userId=this.$route.query.userId;
+        let orderItem=this.$route.query.item;
+        this.orderItem=orderItem;
         this.userId=userId;
         this.getAddressList();
     },
@@ -64,7 +86,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 body{
     background: #f5f5f5;
 }
